@@ -4,6 +4,29 @@
     <!-- Add CSS styles, fonts, and colors as needed -->
     <title>Online Smart Phone Order Request Form</title>
 </head>
+
+<script th:inline="javascript">
+    /*<![CDATA[*/
+    function updateText() {
+        var select = document.getElementById('phoneBrand');
+        var brandDescription = document.getElementById('brandDescription');
+        var selectedBrand = select.options[select.selectedIndex].value;
+        
+        switch (selectedBrand) {
+            case 'iPhone':
+                brandDescription.textContent = 'Price iPhone XR: $979.00 - iPhone 14 Pro: $1099.00 - iPhone 15: $1200.00';
+                break;
+            case 'Samsung':
+                brandDescription.textContent = 'Price Samsung Galaxy 20 Plus: $899.00 - Galaxy Note 20: $799.00 - Galaxy Z Flip: $1499.00';
+                break;
+            // Add cases for other phone brands
+            default:
+                brandDescription.textContent = 'Please select a phone brand to see the prices';
+                break;
+        }
+    }
+    /*]]>*/
+</script>
 <body>
     
     <h1>Online Smart Phone Order Request Form</h1>
@@ -28,12 +51,14 @@
         <textarea id="address" name="address" required></textarea><br><br>
 
         <label for="phoneBrand">Phone Brand:</label>
-        <select id="phoneBrand" name="phoneBrand" required><br><br><br>
+        <select onchange="updateText()" id="phoneBrand" name="phoneBrand" required><br><br><br>
 			<option value="Brand">Please select a phone brand</option><br>
             <option value="iPhone">iPhone</option>
             <option value="Samsung">Samsung</option>
             <!-- Add other phone brands here -->
         </select><br>
+        
+        <div id="brandDescription"></div>
 
         <label for="phoneModel">Phone Model:</label>
         <select id="phoneModel" name="phoneModel" required>
