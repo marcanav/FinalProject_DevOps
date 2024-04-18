@@ -3,7 +3,11 @@ pipeline {
 
     tools {
         maven "MAVEN3"
+         jdk 'JDK17'
     }
+
+    environment {
+        JAVA_HOME = 'C:/Program Files/Java/jdk-17'
 
     stages {
         stage('Build') {
